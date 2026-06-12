@@ -1,149 +1,164 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل المنتجات</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل المنتجات</title>
 
-    <!-- أيقونات السوشيال ميديا -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    text-align: center;
+}
 
-        .container {
-            max-width: 450px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
+/* الحاوية */
+.container {
+    max-width: 450px;
+    margin: auto;
+    padding: 20px;
+}
 
-        .logo {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 15px;
-        }
+/* الصورة العلوية */
+.top-banner {
+    width: 100%;
+    border-radius: 0 0 25px 25px;
+    overflow: hidden;
+}
 
-        h1 {
-            margin-bottom: 10px;
-        }
+.top-banner img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        p {
-            color: #666;
-        }
+/* العنوان */
+h1 {
+    margin-top: 20px;
+    color: gold;
+}
 
-        input {
-            width: 90%;
-            padding: 15px;
-            font-size: 18px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
+p {
+    color: #bbb;
+}
 
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
+/* الإدخال */
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    margin-top: 20px;
+    outline: none;
+}
 
-        button:hover {
-            opacity: 0.9;
-        }
+/* الزر */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: gold;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-        .social {
-            margin-top: 30px;
-        }
+button:hover {
+    opacity: 0.8;
+}
 
-        .social a {
-            color: #333;
-            font-size: 28px;
-            margin: 0 10px;
-            text-decoration: none;
-        }
+/* السوشيال */
+.social {
+    margin-top: 25px;
+}
 
-        .social a:hover {
-            opacity: 0.7;
-        }
-    </style>
+.social a {
+    color: gold;
+    font-size: 28px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social a:hover {
+    transform: scale(1.2);
+}
+
+/* صور تحت السوشيال */
+.bottom-images {
+    margin-top: 25px;
+}
+
+.bottom-images img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<!-- صورة علوية -->
+<div class="top-banner">
+    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9a3" alt="banner">
+</div>
 
-        <!-- الشعار -->
-        <img src="https://via.placeholder.com/150" alt="الشعار" class="logo">
+<div class="container">
 
-        <h1>دليل المنتجات</h1>
+    <h1>دليل المنتجات</h1>
+    <p>أدخل رقم المنتج للانتقال مباشرة</p>
 
-        <p>أدخل رقم المنتج للانتقال مباشرة إلى صفحة الشراء</p>
+    <input type="number" id="productCode" placeholder="مثال: 1001">
+    <button onclick="goToProduct()">انتقال</button>
 
-        <input type="text" id="productCode" placeholder="مثال: 1001">
-
-        <button onclick="goToProduct()">انتقال</button>
-
-        <!-- أيقونات السوشيال ميديا -->
-        <div class="social">
-            <a href="https://wa.me/9665XXXXXXXX" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-
-            <a href="https://instagram.com/USERNAME" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-
-            <a href="https://tiktok.com/@USERNAME" target="_blank">
-                <i class="fab fa-tiktok"></i>
-            </a>
-
-            <a href="https://snapchat.com/add/USERNAME" target="_blank">
-                <i class="fab fa-snapchat"></i>
-            </a>
-        </div>
-
+    <!-- سوشيال -->
+    <div class="social">
+        <a href="https://wa.me/9665XXXXXXXX"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/USERNAME"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@USERNAME"><i class="fab fa-tiktok"></i></a>
+        <a href="https://snapchat.com/add/USERNAME"><i class="fab fa-snapchat"></i></a>
     </div>
 
-    <script>
-        const links = {
-            "1001": "https://example.com/product1",
-            "1002": "https://example.com/product2",
-            "1003": "https://example.com/product3"
-        };
+    <!-- صور تحت السوشيال -->
+    <div class="bottom-images">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="">
+        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" alt="">
+    </div>
 
-        function goToProduct() {
-            const code = document.getElementById("productCode").value.trim();
+</div>
 
-            if (links[code]) {
-                window.location.href = links[code];
-            } else {
-                alert("عذراً، رقم المنتج غير موجود.");
-            }
-        }
+<script>
+const links = {
+    "1001": "https://example.com/product1",
+    "1002": "https://example.com/product2",
+    "1003": "https://example.com/product3"
+};
 
-        // التحويل عند الضغط على Enter
-        document.getElementById("productCode").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                goToProduct();
-            }
-        });
-    </script>
+function goToProduct() {
+    const code = document.getElementById("productCode").value.trim();
+
+    if (links[code]) {
+        window.location.href = links[code];
+    } else {
+        alert("رقم المنتج غير موجود");
+    }
+}
+
+document.getElementById("productCode").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        goToProduct();
+    }
+});
+</script>
 
 </body>
 </html>
