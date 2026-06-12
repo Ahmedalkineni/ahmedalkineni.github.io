@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المنتجات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            direction: rtl;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>أدخل رقم المنتج</h1>
+
+    <input type="text" id="productCode" placeholder="مثال: 1001">
+    <button onclick="goToProduct()">انتقال</button>
+
+    <script>
+        const links = {
+            "1001": "https://example.com/product1",
+            "1002": "https://example.com/product2",
+            "1003": "https://example.com/product3"
+        };
+
+        function goToProduct() {
+            const code = document.getElementById("productCode").value.trim();
+
+            if (links[code]) {
+                window.location.href = links[code];
+            } else {
+                alert("رقم المنتج غير موجود");
+            }
+        }
+    </script>
+
+</body>
+</html>
