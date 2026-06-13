@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دليل المنتجات</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 body {
     margin: 0;
@@ -15,48 +17,86 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    max-width: 420px;
     margin: auto;
     padding: 20px;
 }
 
-h1 {
-    color: gold;
+.logo {
+    width: 140px;
+    margin-top: 20px;
 }
 
-.product {
-    background: #1f1f1f;
-    margin: 10px 0;
+input {
+    width: 100%;
     padding: 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.product:hover {
-    transform: scale(1.02);
-    background: #2a2a2a;
-}
-
-.code {
     font-size: 18px;
-    color: gold;
+    border-radius: 12px;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: gold;
     font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+#msg {
+    margin-top: 10px;
+}
+
+.social {
+    margin-top: 25px;
+}
+
+.social a {
+    color: gold;
+    font-size: 28px;
+    margin: 0 10px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>دليل المنتجات</h1>
+<div class="container">
 
-<div class="container" id="list"></div>
+    <!-- لوقو -->
+    <img class="logo" src="https://via.placeholder.com/140" alt="logo">
+
+    <!-- إدخال رقم المنتج -->
+    <input type="number" id="productCode" placeholder="اكتب رقم المنتج">
+
+    <button onclick="goToProduct()">اضغط هنا</button>
+
+    <div id="msg"></div>
+
+    <!-- سوشيال -->
+    <div class="social">
+        <a href="https://wa.me/9665XXXXXXXX"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/USERNAME"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@USERNAME"><i class="fab fa-tiktok"></i></a>
+    </div>
+
+</div>
 
 <script>
 
-// ✅ كل منتج في سطر واحد (رقم + اسم + رابط)
+/* ✅ 50 منتج (كل شيء في سطر واحد: رقم + اسم + رابط) */
 const products = {
-"01": { name: "كوب أطفال معزول", link: "https://s.click.aliexpress.com/e/_c3tOnpAl" },
+"01": { name: "ساعة فاخرة", link: "https://example.com/product1" },
 "02": { name: "سماعات بلوتوث", link: "https://example.com/product2" },
 "03": { name: "هاتف ذكي", link: "https://example.com/product3" },
 "04": { name: "شاحن سريع", link: "https://example.com/product4" },
@@ -108,23 +148,30 @@ const products = {
 "50": { name: "حامل جوال", link: "https://example.com/product50" }
 };
 
-const list = document.getElementById("list");
+/* التحويل */
+function goToProduct() {
+    const code = document.getElementById("productCode").value.trim();
+    const msg = document.getElementById("msg");
 
-// عرض الرقم فقط
-Object.keys(products).forEach(code => {
-    const div = document.createElement("div");
-    div.className = "product";
+    if (code === "") {
+        msg.textContent = "اكتب رقم المنتج";
+        msg.style.color = "orange";
+        return;
+    }
 
-    div.innerHTML = `
-        <div class="code">رقم المنتج: ${code}</div>
-    `;
+    if (products[code]) {
+        msg.textContent = "جاري التحويل...";
+        msg.style.color = "lightgreen";
 
-    div.onclick = () => {
-        window.location.href = products[code].link;
-    };
+        setTimeout(() => {
+            window.location.href = products[code].link;
+        }, 500);
 
-    list.appendChild(div);
-});
+    } else {
+        msg.textContent = "رقم المنتج غير موجود";
+        msg.style.color = "red";
+    }
+}
 </script>
 
 </body>
