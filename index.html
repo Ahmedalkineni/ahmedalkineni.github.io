@@ -8,88 +8,135 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f6fa;
-    text-align: center;
-    color: #222;
+    background: #f4f6f9;
+    color: #333;
 }
 
-/* الكارد الرئيسي */
 .container {
     max-width: 420px;
     margin: 40px auto;
+    padding: 30px;
     background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
 }
 
-/* اللوقو */
 .logo {
-    width: 120px;
+    width: 140px;
+    max-width: 100%;
     margin-bottom: 15px;
 }
 
-/* العنوان */
 h1 {
-    margin: 10px 0;
-    font-size: 22px;
+    margin: 0;
+    font-size: 28px;
+    color: #2d5be3;
 }
 
-/* الإدخال (صغير ومنسق) */
-input {
-    width: 60%;
-    padding: 10px;
+.subtitle {
+    color: #777;
+    margin: 10px 0 25px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
     font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    outline: none;
     text-align: center;
-    margin-top: 10px;
+    outline: none;
+    transition: 0.3s;
 }
 
-/* زر التحويل */
-button {
-    width: 35%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 5px;
-    font-size: 16px;
+.input-group input:focus {
+    border-color: #2d5be3;
+    box-shadow: 0 0 0 4px rgba(45,91,227,0.12);
+}
+
+.input-group button {
+    padding: 14px 20px;
     border: none;
-    border-radius: 10px;
-    background: #4a90e2;
+    border-radius: 14px;
+    background: #2d5be3;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
-button:hover {
-    background: #357bd8;
+.input-group button:hover {
+    background: #2247b7;
 }
 
-/* الرسالة */
 #msg {
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.social-title {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: #666;
     font-size: 14px;
 }
 
-/* السوشيال */
 .social {
-    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .social a {
-    color: #4a90e2;
-    font-size: 26px;
-    margin: 0 10px;
+    width: 50px;
+    height: 50px;
+    background: #f4f6f9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #2d5be3;
+    font-size: 24px;
     transition: 0.3s;
 }
 
 .social a:hover {
-    transform: scale(1.2);
-    color: #357bd8;
+    transform: translateY(-4px);
+    background: #2d5be3;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group button {
+        width: 100%;
+    }
 }
 </style>
 </head>
@@ -98,82 +145,94 @@ button:hover {
 
 <div class="container">
 
-    <!-- لوقو -->
-    <img class="logo" src="https://a.top4top.io/p_3816eap3a1.png" alt="logo">
+    <!-- الشعار -->
+    <img class="logo" src="https://a.top4top.io/p_3816eap3a1.png" alt="Logo">
 
-    <h1>دليل المنتجات</h1>
+    <h1>AHMED ALKINENI</h1>
 
-    <!-- الإدخال + الزر -->
-    <div>
-        <input type="number" id="productCode" placeholder="رقم المنتج">
+    <p class="subtitle">
+        أدخل رقم المنتج الموجود في الإعلان ثم اضغط تحويل للانتقال إلى صفحة المنتج.
+    </p>
+
+    <div class="input-group">
+        <input type="text" id="productCode" placeholder="رقم المنتج (مثال: 01)">
         <button onclick="goToProduct()">تحويل</button>
     </div>
 
     <div id="msg"></div>
 
-    <!-- السوشيال -->
+    <div class="social-title">
+        تابعنا على منصات التواصل
+    </div>
+
     <div class="social">
-        <a href="https://wa.me/9665XXXXXXXX"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/USERNAME"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@USERNAME"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/9665XXXXXXXX" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://instagram.com/USERNAME" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://tiktok.com/@USERNAME" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
     </div>
 
 </div>
 
 <script>
-
-/* المنتجات (50 منتج) */
 const products = {
-"01": { name: "كوب أطفال معزول", link: "https://s.click.aliexpress.com/e/_c3tOnpAl" },
-"02": { name: "سماعات بلوتوث", link: "https://example.com/product2" },
-"03": { name: "هاتف ذكي", link: "https://example.com/product3" },
-"04": { name: "شاحن سريع", link: "https://example.com/product4" },
-"05": { name: "كيبل USB", link: "https://example.com/product5" },
-"06": { name: "جراب جوال", link: "https://example.com/product6" },
-"07": { name: "لابتوب", link: "https://example.com/product7" },
-"08": { name: "ماوس", link: "https://example.com/product8" },
-"09": { name: "كيبورد", link: "https://example.com/product9" },
-"10": { name: "شاشة", link: "https://example.com/product10" },
-"11": { name: "كرسي ألعاب", link: "https://example.com/product11" },
-"12": { name: "طاولة مكتب", link: "https://example.com/product12" },
-"13": { name: "مصباح", link: "https://example.com/product13" },
-"14": { name: "كاميرا", link: "https://example.com/product14" },
-"15": { name: "باور بانك", link: "https://example.com/product15" },
-"16": { name: "سماعة رأس", link: "https://example.com/product16" },
-"17": { name: "مكبر صوت", link: "https://example.com/product17" },
-"18": { name: "USB", link: "https://example.com/product18" },
-"19": { name: "هارد", link: "https://example.com/product19" },
-"20": { name: "راوتر", link: "https://example.com/product20" },
-"21": { name: "تلفزيون", link: "https://example.com/product21" },
-"22": { name: "مكيف", link: "https://example.com/product22" },
-"23": { name: "مروحة", link: "https://example.com/product23" },
-"24": { name: "مكنسة", link: "https://example.com/product24" },
-"25": { name: "غسالة", link: "https://example.com/product25" },
-"26": { name: "ثلاجة", link: "https://example.com/product26" },
-"27": { name: "مايك", link: "https://example.com/product27" },
-"28": { name: "كاميرا", link: "https://example.com/product28" },
-"29": { name: "درون", link: "https://example.com/product29" },
-"30": { name: "ساعة ذكية", link: "https://example.com/product30" },
-"31": { name: "نظارة", link: "https://example.com/product31" },
-"32": { name: "حذاء", link: "https://example.com/product32" },
-"33": { name: "شنطة", link: "https://example.com/product33" },
-"34": { name: "عطر", link: "https://example.com/product34" },
-"35": { name: "ساعة رجالية", link: "https://example.com/product35" },
-"36": { name: "ساعة نسائية", link: "https://example.com/product36" },
-"37": { name: "ميدالية", link: "https://example.com/product37" },
-"38": { name: "محفظة", link: "https://example.com/product38" },
-"39": { name: "ملابس رياضية", link: "https://example.com/product39" },
-"40": { name: "تيشيرت", link: "https://example.com/product40" },
-"41": { name: "جاكيت", link: "https://example.com/product41" },
-"42": { name: "بنطلون", link: "https://example.com/product42" },
-"43": { name: "حزام", link: "https://example.com/product43" },
-"44": { name: "قبعة", link: "https://example.com/product44" },
-"45": { name: "سلسلة", link: "https://example.com/product45" },
-"46": { name: "خاتم", link: "https://example.com/product46" },
-"47": { name: "سوار", link: "https://example.com/product47" },
-"48": { name: "إكسسوارات سيارة", link: "https://example.com/product48" },
-"49": { name: "حماية شاشة", link: "https://example.com/product49" },
-"50": { name: "حامل جوال", link: "https://example.com/product50" }
+    "01": { name: "كوب أطفال معزول", link: "https://s.click.aliexpress.com/e/_c3tOnpAl" },
+    "02": { name: "اسم المنتج", link: "https://example.com/product2" },
+    "03": { name: "اسم المنتج", link: "https://example.com/product3" },
+    "04": { name: "اسم المنتج", link: "https://example.com/product4" },
+    "05": { name: "اسم المنتج", link: "https://example.com/product5" },
+    "06": { name: "اسم المنتج", link: "https://example.com/product6" },
+    "07": { name: "اسم المنتج", link: "https://example.com/product7" },
+    "08": { name: "اسم المنتج", link: "https://example.com/product8" },
+    "09": { name: "اسم المنتج", link: "https://example.com/product9" },
+    "10": { name: "اسم المنتج", link: "https://example.com/product10" },
+    "11": { name: "اسم المنتج", link: "https://example.com/product11" },
+    "12": { name: "اسم المنتج", link: "https://example.com/product12" },
+    "13": { name: "اسم المنتج", link: "https://example.com/product13" },
+    "14": { name: "اسم المنتج", link: "https://example.com/product14" },
+    "15": { name: "اسم المنتج", link: "https://example.com/product15" },
+    "16": { name: "اسم المنتج", link: "https://example.com/product16" },
+    "17": { name: "اسم المنتج", link: "https://example.com/product17" },
+    "18": { name: "اسم المنتج", link: "https://example.com/product18" },
+    "19": { name: "اسم المنتج", link: "https://example.com/product19" },
+    "20": { name: "اسم المنتج", link: "https://example.com/product20" },
+    "21": { name: "اسم المنتج", link: "https://example.com/product21" },
+    "22": { name: "اسم المنتج", link: "https://example.com/product22" },
+    "23": { name: "اسم المنتج", link: "https://example.com/product23" },
+    "24": { name: "اسم المنتج", link: "https://example.com/product24" },
+    "25": { name: "اسم المنتج", link: "https://example.com/product25" },
+    "26": { name: "اسم المنتج", link: "https://example.com/product26" },
+    "27": { name: "اسم المنتج", link: "https://example.com/product27" },
+    "28": { name: "اسم المنتج", link: "https://example.com/product28" },
+    "29": { name: "اسم المنتج", link: "https://example.com/product29" },
+    "30": { name: "اسم المنتج", link: "https://example.com/product30" },
+    "31": { name: "اسم المنتج", link: "https://example.com/product31" },
+    "32": { name: "اسم المنتج", link: "https://example.com/product32" },
+    "33": { name: "اسم المنتج", link: "https://example.com/product33" },
+    "34": { name: "اسم المنتج", link: "https://example.com/product34" },
+    "35": { name: "اسم المنتج", link: "https://example.com/product35" },
+    "36": { name: "اسم المنتج", link: "https://example.com/product36" },
+    "37": { name: "اسم المنتج", link: "https://example.com/product37" },
+    "38": { name: "اسم المنتج", link: "https://example.com/product38" },
+    "39": { name: "اسم المنتج", link: "https://example.com/product39" },
+    "40": { name: "اسم المنتج", link: "https://example.com/product40" },
+    "41": { name: "اسم المنتج", link: "https://example.com/product41" },
+    "42": { name: "اسم المنتج", link: "https://example.com/product42" },
+    "43": { name: "اسم المنتج", link: "https://example.com/product43" },
+    "44": { name: "اسم المنتج", link: "https://example.com/product44" },
+    "45": { name: "اسم المنتج", link: "https://example.com/product45" },
+    "46": { name: "اسم المنتج", link: "https://example.com/product46" },
+    "47": { name: "اسم المنتج", link: "https://example.com/product47" },
+    "48": { name: "اسم المنتج", link: "https://example.com/product48" },
+    "49": { name: "اسم المنتج", link: "https://example.com/product49" },
+    "50": { name: "اسم المنتج", link: "https://example.com/product50" }
 };
 
 function goToProduct() {
@@ -182,23 +241,29 @@ function goToProduct() {
 
     if (code === "") {
         msg.style.color = "#e67e22";
-        msg.textContent = "اكتب رقم المنتج";
+        msg.textContent = "يرجى إدخال رقم المنتج.";
         return;
     }
 
     if (products[code]) {
-        msg.style.color = "green";
+        msg.style.color = "#2d5be3";
         msg.textContent = "جاري التحويل...";
 
         setTimeout(() => {
-            window.location.href = products[code].link;
+            window.open(products[code].link, "_blank");
         }, 500);
 
     } else {
-        msg.style.color = "red";
-        msg.textContent = "رقم المنتج غير موجود";
+        msg.style.color = "#e74c3c";
+        msg.textContent = "رقم المنتج غير موجود.";
     }
 }
+
+document.getElementById("productCode").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        goToProduct();
+    }
+});
 </script>
 
 </body>
