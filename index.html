@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دليل المنتجات</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0f0f0f;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
     color: #fff;
     text-align: center;
 }
@@ -23,19 +21,10 @@ body {
     padding: 20px;
 }
 
-/* الصورة العلوية */
-.top-banner img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
 /* العنوان */
 h1 {
-    margin-top: 20px;
     color: gold;
+    margin-top: 20px;
 }
 
 p {
@@ -48,9 +37,11 @@ input {
     padding: 15px;
     font-size: 18px;
     border-radius: 12px;
-    border: none;
+    border: 1px solid #333;
     margin-top: 20px;
     outline: none;
+    background: #1f1f1f;
+    color: white;
 }
 
 /* الزر */
@@ -65,16 +56,18 @@ button {
     color: #000;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover {
-    opacity: 0.8;
+    transform: scale(1.03);
+    opacity: 0.9;
 }
 
-/* رسالة الخطأ */
+/* الرسالة */
 #msg {
-    color: red;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 /* السوشيال */
@@ -87,21 +80,20 @@ button:hover {
     font-size: 28px;
     margin: 0 10px;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .social a:hover {
     transform: scale(1.2);
 }
 
-/* صور تحت */
-.bottom-images {
-    margin-top: 25px;
-}
-
-.bottom-images img {
+/* صورة علوية */
+.top img {
     width: 100%;
-    border-radius: 15px;
-    margin-top: 10px;
+    height: 200px;
+    object-fit: cover;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 </style>
 </head>
@@ -109,7 +101,7 @@ button:hover {
 <body>
 
 <!-- صورة علوية -->
-<div class="top-banner">
+<div class="top">
     <img src="https://via.placeholder.com/800x400" alt="banner">
 </div>
 
@@ -126,16 +118,9 @@ button:hover {
 
     <!-- سوشيال -->
     <div class="social">
-        <a href="https://wa.me/9665XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/USERNAME" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@USERNAME" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://snapchat.com/add/USERNAME" target="_blank"><i class="fab fa-snapchat"></i></a>
-    </div>
-
-    <!-- صور تحت -->
-    <div class="bottom-images">
-        <img src="https://via.placeholder.com/800x300" alt="">
-        <img src="https://via.placeholder.com/800x300" alt="">
+        <a href="https://wa.me/9665XXXXXXXX" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/USERNAME" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@USERNAME" target="_blank">TikTok</a>
     </div>
 
 </div>
@@ -151,14 +136,27 @@ function goToProduct() {
     const code = document.getElementById("productCode").value.trim();
     const msg = document.getElementById("msg");
 
+    if (code === "") {
+        msg.textContent = "اكتب رقم المنتج";
+        msg.style.color = "orange";
+        return;
+    }
+
     if (links[code]) {
-        msg.textContent = "";
-        window.location.href = links[code];
+        msg.textContent = "جاري التحويل...";
+        msg.style.color = "lightgreen";
+
+        setTimeout(() => {
+            window.location.href = links[code];
+        }, 500);
+
     } else {
         msg.textContent = "رقم المنتج غير موجود";
+        msg.style.color = "red";
     }
 }
 
+// دعم زر Enter
 document.getElementById("productCode").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         goToProduct();
