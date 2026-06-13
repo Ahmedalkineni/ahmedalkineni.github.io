@@ -11,60 +11,85 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    color: white;
+    background: #f5f6fa;
     text-align: center;
+    color: #222;
 }
 
+/* الكارد الرئيسي */
 .container {
     max-width: 420px;
-    margin: auto;
-    padding: 20px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
+/* اللوقو */
 .logo {
-    width: 140px;
-    margin-top: 20px;
+    width: 120px;
+    margin-bottom: 15px;
 }
 
+/* العنوان */
+h1 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+/* الإدخال (صغير ومنسق) */
 input {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 12px;
-    border: none;
-    margin-top: 20px;
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
     text-align: center;
-}
-
-button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 12px;
-    font-size: 18px;
-    border: none;
-    border-radius: 12px;
-    background: gold;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.85;
-}
-
-#msg {
     margin-top: 10px;
 }
 
+/* زر التحويل */
+button {
+    width: 35%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #357bd8;
+}
+
+/* الرسالة */
+#msg {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* السوشيال */
 .social {
     margin-top: 25px;
 }
 
 .social a {
-    color: gold;
-    font-size: 28px;
+    color: #4a90e2;
+    font-size: 26px;
     margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social a:hover {
+    transform: scale(1.2);
+    color: #357bd8;
 }
 </style>
 </head>
@@ -74,16 +99,19 @@ button:hover {
 <div class="container">
 
     <!-- لوقو -->
-    <img class="logo" src="https://via.placeholder.com/140" alt="logo">
+    <img class="logo" src="https://via.placeholder.com/120" alt="logo">
 
-    <!-- إدخال رقم المنتج -->
-    <input type="number" id="productCode" placeholder="اكتب رقم المنتج">
+    <h1>دليل المنتجات</h1>
 
-    <button onclick="goToProduct()">اضغط هنا</button>
+    <!-- الإدخال + الزر -->
+    <div>
+        <input type="number" id="productCode" placeholder="رقم المنتج">
+        <button onclick="goToProduct()">تحويل</button>
+    </div>
 
     <div id="msg"></div>
 
-    <!-- سوشيال -->
+    <!-- السوشيال -->
     <div class="social">
         <a href="https://wa.me/9665XXXXXXXX"><i class="fab fa-whatsapp"></i></a>
         <a href="https://instagram.com/USERNAME"><i class="fab fa-instagram"></i></a>
@@ -94,7 +122,7 @@ button:hover {
 
 <script>
 
-/* ✅ 50 منتج (كل شيء في سطر واحد: رقم + اسم + رابط) */
+/* المنتجات (50 منتج) */
 const products = {
 "01": { name: "ساعة فاخرة", link: "https://example.com/product1" },
 "02": { name: "سماعات بلوتوث", link: "https://example.com/product2" },
@@ -123,7 +151,7 @@ const products = {
 "25": { name: "غسالة", link: "https://example.com/product25" },
 "26": { name: "ثلاجة", link: "https://example.com/product26" },
 "27": { name: "مايك", link: "https://example.com/product27" },
-"28": { name: "كاميرا احترافية", link: "https://example.com/product28" },
+"28": { name: "كاميرا", link: "https://example.com/product28" },
 "29": { name: "درون", link: "https://example.com/product29" },
 "30": { name: "ساعة ذكية", link: "https://example.com/product30" },
 "31": { name: "نظارة", link: "https://example.com/product31" },
@@ -148,28 +176,27 @@ const products = {
 "50": { name: "حامل جوال", link: "https://example.com/product50" }
 };
 
-/* التحويل */
 function goToProduct() {
     const code = document.getElementById("productCode").value.trim();
     const msg = document.getElementById("msg");
 
     if (code === "") {
+        msg.style.color = "#e67e22";
         msg.textContent = "اكتب رقم المنتج";
-        msg.style.color = "orange";
         return;
     }
 
     if (products[code]) {
+        msg.style.color = "green";
         msg.textContent = "جاري التحويل...";
-        msg.style.color = "lightgreen";
 
         setTimeout(() => {
             window.location.href = products[code].link;
         }, 500);
 
     } else {
-        msg.textContent = "رقم المنتج غير موجود";
         msg.style.color = "red";
+        msg.textContent = "رقم المنتج غير موجود";
     }
 }
 </script>
