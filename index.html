@@ -10,157 +10,120 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    color: #fff;
+    color: white;
     text-align: center;
 }
 
-/* الحاوية */
 .container {
-    max-width: 450px;
+    max-width: 500px;
     margin: auto;
     padding: 20px;
 }
 
-/* العنوان */
 h1 {
     color: gold;
-    margin-top: 20px;
 }
 
-p {
-    color: #bbb;
-}
-
-/* الإدخال */
-input {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 12px;
-    border: 1px solid #333;
-    margin-top: 20px;
-    outline: none;
+.product {
     background: #1f1f1f;
-    color: white;
-}
-
-/* الزر */
-button {
-    width: 100%;
+    margin: 10px 0;
     padding: 15px;
-    margin-top: 15px;
-    font-size: 18px;
-    border: none;
     border-radius: 12px;
-    background: gold;
-    color: #000;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
-button:hover {
-    transform: scale(1.03);
-    opacity: 0.9;
+.product:hover {
+    transform: scale(1.02);
+    background: #2a2a2a;
 }
 
-/* الرسالة */
-#msg {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* السوشيال */
-.social {
-    margin-top: 25px;
-}
-
-.social a {
+.code {
+    font-size: 18px;
     color: gold;
-    font-size: 28px;
-    margin: 0 10px;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.social a:hover {
-    transform: scale(1.2);
-}
-
-/* صورة علوية */
-.top img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- صورة علوية -->
-<div class="top">
-    <img src="https://via.placeholder.com/800x400" alt="banner">
-</div>
+<h1>دليل المنتجات</h1>
 
-<div class="container">
-
-    <h1>دليل المنتجات</h1>
-    <p>أدخل رقم المنتج للانتقال مباشرة</p>
-
-    <input type="number" id="productCode" placeholder="مثال: 1001">
-
-    <button onclick="goToProduct()">انتقال</button>
-
-    <p id="msg"></p>
-
-    <!-- سوشيال -->
-    <div class="social">
-        <a href="https://wa.me/9665XXXXXXXX" target="_blank">WhatsApp</a>
-        <a href="https://instagram.com/USERNAME" target="_blank">Instagram</a>
-        <a href="https://tiktok.com/@USERNAME" target="_blank">TikTok</a>
-    </div>
-
-</div>
+<div class="container" id="list"></div>
 
 <script>
-const links = {
-    "1001": "https://example.com/product1",
-    "1002": "https://example.com/product2",
-    "1003": "https://example.com/product3"
+
+// ✅ كل منتج في سطر واحد (رقم + اسم + رابط)
+const products = {
+"01": { name: "كوب أطفال معزول", link: "https://s.click.aliexpress.com/e/_c3tOnpAl" },
+"02": { name: "سماعات بلوتوث", link: "https://example.com/product2" },
+"03": { name: "هاتف ذكي", link: "https://example.com/product3" },
+"04": { name: "شاحن سريع", link: "https://example.com/product4" },
+"05": { name: "كيبل USB", link: "https://example.com/product5" },
+"06": { name: "جراب جوال", link: "https://example.com/product6" },
+"07": { name: "لابتوب", link: "https://example.com/product7" },
+"08": { name: "ماوس", link: "https://example.com/product8" },
+"09": { name: "كيبورد", link: "https://example.com/product9" },
+"10": { name: "شاشة", link: "https://example.com/product10" },
+"11": { name: "كرسي ألعاب", link: "https://example.com/product11" },
+"12": { name: "طاولة مكتب", link: "https://example.com/product12" },
+"13": { name: "مصباح", link: "https://example.com/product13" },
+"14": { name: "كاميرا", link: "https://example.com/product14" },
+"15": { name: "باور بانك", link: "https://example.com/product15" },
+"16": { name: "سماعة رأس", link: "https://example.com/product16" },
+"17": { name: "مكبر صوت", link: "https://example.com/product17" },
+"18": { name: "USB", link: "https://example.com/product18" },
+"19": { name: "هارد", link: "https://example.com/product19" },
+"20": { name: "راوتر", link: "https://example.com/product20" },
+"21": { name: "تلفزيون", link: "https://example.com/product21" },
+"22": { name: "مكيف", link: "https://example.com/product22" },
+"23": { name: "مروحة", link: "https://example.com/product23" },
+"24": { name: "مكنسة", link: "https://example.com/product24" },
+"25": { name: "غسالة", link: "https://example.com/product25" },
+"26": { name: "ثلاجة", link: "https://example.com/product26" },
+"27": { name: "مايك", link: "https://example.com/product27" },
+"28": { name: "كاميرا احترافية", link: "https://example.com/product28" },
+"29": { name: "درون", link: "https://example.com/product29" },
+"30": { name: "ساعة ذكية", link: "https://example.com/product30" },
+"31": { name: "نظارة", link: "https://example.com/product31" },
+"32": { name: "حذاء", link: "https://example.com/product32" },
+"33": { name: "شنطة", link: "https://example.com/product33" },
+"34": { name: "عطر", link: "https://example.com/product34" },
+"35": { name: "ساعة رجالية", link: "https://example.com/product35" },
+"36": { name: "ساعة نسائية", link: "https://example.com/product36" },
+"37": { name: "ميدالية", link: "https://example.com/product37" },
+"38": { name: "محفظة", link: "https://example.com/product38" },
+"39": { name: "ملابس رياضية", link: "https://example.com/product39" },
+"40": { name: "تيشيرت", link: "https://example.com/product40" },
+"41": { name: "جاكيت", link: "https://example.com/product41" },
+"42": { name: "بنطلون", link: "https://example.com/product42" },
+"43": { name: "حزام", link: "https://example.com/product43" },
+"44": { name: "قبعة", link: "https://example.com/product44" },
+"45": { name: "سلسلة", link: "https://example.com/product45" },
+"46": { name: "خاتم", link: "https://example.com/product46" },
+"47": { name: "سوار", link: "https://example.com/product47" },
+"48": { name: "إكسسوارات سيارة", link: "https://example.com/product48" },
+"49": { name: "حماية شاشة", link: "https://example.com/product49" },
+"50": { name: "حامل جوال", link: "https://example.com/product50" }
 };
 
-function goToProduct() {
-    const code = document.getElementById("productCode").value.trim();
-    const msg = document.getElementById("msg");
+const list = document.getElementById("list");
 
-    if (code === "") {
-        msg.textContent = "اكتب رقم المنتج";
-        msg.style.color = "orange";
-        return;
-    }
+// عرض الرقم فقط
+Object.keys(products).forEach(code => {
+    const div = document.createElement("div");
+    div.className = "product";
 
-    if (links[code]) {
-        msg.textContent = "جاري التحويل...";
-        msg.style.color = "lightgreen";
+    div.innerHTML = `
+        <div class="code">رقم المنتج: ${code}</div>
+    `;
 
-        setTimeout(() => {
-            window.location.href = links[code];
-        }, 500);
+    div.onclick = () => {
+        window.location.href = products[code].link;
+    };
 
-    } else {
-        msg.textContent = "رقم المنتج غير موجود";
-        msg.style.color = "red";
-    }
-}
-
-// دعم زر Enter
-document.getElementById("productCode").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        goToProduct();
-    }
+    list.appendChild(div);
 });
 </script>
 
